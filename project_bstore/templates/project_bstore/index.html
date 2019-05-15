@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+  
+  <head>
+    
+    <meta charset="UTF-8">
+    
+    <link rel="stylesheet" href="{% static 'project_bstore/search.css' %}">
+    <link rel="stylesheet" href="{% static 'project_bstore/search_top.css' %}">
+    
+    <title>index</title>
+  
+  </head>
+
+  <body>
+    
+    <!-- the logo and the search bar -->
+    <div> 
+        <form class="search-container" id="submit" method='POST' action='{% url "searching" %}'>
+          {% csrf_token %}
+          <input type="text" name='q' id="search-bar" placeholder="search here">
+          <img class="search-icon" src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png" onclick="document.getElementById('submit').submit();">
+        </form> 
+    </div>
+    
+
+    <!-- for the fuckin' tabs -->
+   
+    {% if user.is_authenticated %}
+        <a href="{% url 'bstore_home' %}">home</a>
+        <a href="{% url 'profile' %}">profile</a>
+        <a href="{% url 'sellbookpage' %}">sell a book</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    {% else %}
+      <a href="{% url 'login' %}">Login</a>
+      <a href="{% url 'bstore_register' %}">Register</a>
+    {% endif %}
+    <br>
+    <br>
+    <!-- for showing the book details on the home page -->
+    {% for b in book_details %}
+      <div class="details">
+        <hr>
+        <img class="books_images" src="{{ b.image_url }}">
+        <div class="text">
+          <font size="3">{{b.title}}</font><br>
+          <font size="2">By - {{b.authors}}</font><br>
+          <font size="2">Rating - {{b.average_rating}}</font>
+          <form id="submit" method='POST' action='{% url "booksdetail" %}'>
+            {% csrf_token %}
+            <button name="q" value="{{ b.title }}" onclick="document.getElementById('submit').submit();">learn more</button>
+          </form>
+        </div>
+      </div>
+    {% endfor %}
+
+
+  </body>
+</html>

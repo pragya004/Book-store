@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+  
+  <head>
+    
+    <meta charset="UTF-8">
+    
+    <link rel="stylesheet" href="{% static 'project_bstore/search.css' %}">
+    <link rel="stylesheet" href="{% static 'project_bstore/search_top.css' %}">
+    
+    <link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    
+    <title>index</title>
+  
+  </head>
+
+  <body>
+    
+    <!-- the logo and the search bar -->
+    <div class="logo">
+      <p>THE B-STORE 
+        <form class="search-container" id="submit" method='POST' action='{% url "searching" %}'>
+          {% csrf_token %}
+          <input type="text" name='q' id="search-bar" placeholder="search here">
+          <img class="search-icon" src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png" onclick="document.getElementById('submit').submit();">
+        </form>
+      </p> 
+    </div>
+    
+
+    <!-- for the fuckin' tabs -->
+    <div class="container">    
+        
+        <input type="radio" id="tab1" name="tab" checked>
+        <label for="tab1"><a id="tab1" href="{% url 'bstore_home' %}">home</a></label>
+
+        <input type="radio" id="tab2" name="tab">
+        <label for="tab2">categories</label>
+        
+        <input type="radio" id="tab3" class="yoyo" name="tab">
+        <label for="tab3"><a id="tab3" href="{% url 'bstore_register' %}">register / login</a></label>
+
+        <input type="radio" id="tab4" name="tab">
+        <label for="tab4">help</label>
+        
+        <!-- the small line that shows below all those tabs -->
+        <div class="line"></div>
+
+    </div>
+
+    
+    <!-- for showing the book details on the home page -->
+    {% for b in book_details %}
+      <div class="details">
+        <hr>
+        <img class="books_images" src="{{ b.image_url }}">
+        <div class="text">
+          <font size="3">{{b.title}}</font><br>
+          <font size="2">By - {{b.authors}}</font><br>
+          <font size="2">Rating - {{b.average_rating}}</font>
+          <font size="2">Book Id - {{b.book_id}}</font>
+          <font size="2">Book Count - {{b.books_count}}</font>
+          <font size="2">Publication Year - {{b.publication_year}}</font>
+        </div>
+      </div>
+    {% endfor %}
+
+
+  </body>
+</html>

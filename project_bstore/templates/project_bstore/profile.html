@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+  
+  <head>
+    
+    <meta charset="UTF-8">
+    
+    <link rel="stylesheet" href="{% static 'project_bstore/search.css' %}">
+    
+    <link rel="stylesheet" href="{% static 'project_bstore/search_top.css' %}">
+    
+    <link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    
+    <title>index_after_login</title>
+  
+  </head>
+
+  <body>
+    
+    <!-- the logo and the search bar -->
+    <div class="logo">
+      <p>THE B-STORE 
+        <form class="search-container" id="submit" method='POST' action='{% url "searching" %}'>
+          {% csrf_token %}
+          <input type="text" name='q' id="search-bar" placeholder="search here">
+          <img class="search-icon" src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png" onclick="document.getElementById('submit').submit();">
+        </form>
+      </p> 
+    </div>
+    
+
+    <!-- for the fuckin' tabs -->
+    <div class="container">    
+        
+        <input type="radio" id="tab1" name="tab" checked>
+        <label for="tab1"><a id="tab1" href="{% url 'bstore_home' %}">home</a></label>
+
+        <input type="radio" id="tab2" name="tab">
+        <label for="tab2">categories</label>
+        
+        <input type="radio" id="tab3" class="yoyo" name="tab">
+        <label for="tab3"><a id="tab3" href="{% url 'logout' %}">logout</a></label>
+
+        <input type="radio" id="tab4" name="tab">
+        <label for="tab4">help</label>
+        
+        <!-- the small line that shows below all those tabs -->
+        <div class="line"></div>
+
+    </div>
+    <!-- for showing the user updated yayy message -->
+    <div>
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert">
+          <center>{{message}}</center>
+        </div>
+      {% endfor %}
+    {% endif %} 
+    </div>
+
+    image:<img src="{{ user.profile.image.url }}">
+    <h3>USERNAME : {{ user.username }}</h3>
+    <h4>EMAIL : {{ user.email }}</h4>
+
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+        <fieldset>
+            <legend>Profile Info</legend>
+            {{u_form}}
+            {{p_form}}
+        </fieldset>
+        <div>
+            <button>Update</button>
+        </div>
+      </form>
+
+  </body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>sell or lend a book</title>
+</head>
+<body>
+	<img src="{{object.seller.profile.image.url}}">
+	<h2>{{ object.title }}</h2>
+	<p>By {{ object.seller }} on {{ object.date_posted|date:"F d, Y" }}</p>
+
+	{% if object.seller == user %}
+		<a href="{% url 'post-update' object.id%}">update</a>
+		<a href="{% url 'post-delete' object.id%}">delete</a>
+	{% endif %}
+	<p>{{ object.content }}</p>
+	
+</body>
+</html>

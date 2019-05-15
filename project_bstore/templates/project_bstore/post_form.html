@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <meta charset="UTF-8">
+    
+    
+    <title>register</title>
+ 
+  </head>
+
+  <body>
+
+    <!-- the registration forms -->
+
+    <div >
+      <form method="POST">
+          {% csrf_token %}
+          <fieldset>
+              <legend >blog post</legend>
+              {{form}}
+          </fieldset>
+          <div>
+              <button>post</button>
+          </div>
+      </form>
+      <div>
+          
+      </div>
+    </div>
+    
+  </body>
+</html>

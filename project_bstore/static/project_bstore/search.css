@@ -1,0 +1,94 @@
+.search-container {
+  float: right;
+  width: 290px;
+  margin: 0px;
+  padding: 0px;
+  position: absolute;
+  top:2.5%;
+  right:2%;
+}
+
+.search-icon {
+  position:relative;
+  float: right;
+  width: 65px;
+  height: 65px;
+  top: -53px;
+  right: -10px;
+  background: url("http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png");
+
+}
+input#search-bar {
+  margin: 0 auto;
+  width: 80%;
+  height: 35px;
+  padding: 0 20px;
+  font-size: 1rem;
+  border: 1px solid #D0CFCE;
+  outline: none;
+}
+input#search-bar:focus {
+  border: 1px solid #008ABF;
+  transition: 0.35s ease;
+  color: #008ABF;
+}
+input#search-bar:focus::-webkit-input-placeholder {
+  transition: opacity 0.45s ease;
+  opacity: 0;
+}
+input#search-bar:focus::-moz-placeholder {
+  transition: opacity 0.45s ease;
+  opacity: 0;
+}
+input#search-bar:focus:-ms-placeholder {
+  transition: opacity 0.45s ease;
+  opacity: 0;
+}
+.books_images{
+  width:130px;
+  height:200px;
+  margin-left: 5%;
+}
+
+.text{
+  display: inline-grid;
+  position: absolute;
+  padding-top:0px;
+  padding-left:30px;
+  width: 30%;
+  font-family: 'Raleway', sans-serif;
+  margin-top:5px;
+  margin-right: 5%;
+}
+.details
+{
+  display:inline-block;
+  width:38%;
+  margin-right: 7%;
+  margin-left: 4%;
+}
+.space
+{
+  margin-top: 34%;
+}
+hr
+{
+  width: 120%;
+}
+a
+{
+  color: black;
+}
+.alert
+{
+  border: 1px solid #0a2604;
+  background-color: #d1f9c7;
+  color: #0a2604;
+  width: 25%;
+  margin-left: 40%;
+  align-self: center;
+  border-radius: 2px;
+  height:30px;
+  font-weight: bold;
+  padding-top: 10%;
+}

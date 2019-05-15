@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <meta charset="UTF-8">
+    
+    <link rel="stylesheet" href="{% static 'project_bstore/search.css' %}">
+    <link rel="stylesheet" href="{% static 'project_bstore/search_top_register.css' %}">
+    
+    
+    <title>register</title>
+ 
+  </head>
+
+  <body>
+  
+    <!-- the top and search bar -->
+    <div class="logo">
+      <p>THE B-STORE 
+        <form class="search-container" id="submit" method='POST' action='{% url "searching" %}'>
+          {% csrf_token %}
+          <input type="text" name='q' id="search-bar" placeholder="search here">
+          <img class="search-icon" src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png" onclick="document.getElementById('submit').submit();">
+        </form>
+      </p> 
+    </div>
+      
+      
+    <!-- those tabs again -->
+    <div class="container">  
+
+      <input type="radio" id="tab1" name="tab" >
+      <label for="tab1"><a id="tab1" href="{% url 'bstore_home' %}">home</a></label>
+
+      <input type="radio" id="tab2" name="tab">
+      <label for="tab2">categories</label>
+       
+      <input type="radio" id="tab3" name="tab" checked>
+      <label for="tab3"><a id="tab3" href="{% url 'bstore_register' %}">sign up</a></label>
+
+      <input type="radio" id="tab4" name="tab">
+      <label for="tab4">help</label>
+      
+      <div class="line"></div>
+    
+    </div>
+
+
+    <!-- the registration forms -->
+
+    <div >
+      <form method="POST">
+          {% csrf_token %}
+          <fieldset>
+              <legend >Join Today</legend>
+              {{form}}
+          </fieldset>
+          <div>
+              <button>Sign Up</button>
+          </div>
+      </form>
+      <div>
+          <small>
+              Already Have An Account? <a href="{% url 'login' %}">Sign In</a>
+          </small>
+      </div>
+    </div>
+    
+  </body>
+</html>
