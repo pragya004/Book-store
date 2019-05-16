@@ -59,12 +59,16 @@
         <hr>
         <img class="books_images" src="{{ b.image_url }}">
         <div class="text">
-          <font size="3">{{b.title}}</font><br>
-          <font size="2">By - {{b.authors}}</font><br>
-          <font size="2">Rating - {{b.average_rating}}</font>
-          <font size="2">Book Id - {{b.book_id}}</font>
-          <font size="2">Book Count - {{b.books_count}}</font>
-          <font size="2">Publication Year - {{b.publication_year}}</font>
+            <font size="3">{{b.title}}</font><br>
+            <font size="2">By - {{b.author}}</font><br>
+            <font size="2">Rating - {{b.rating}}</font>
+            <font size="2">Book ISBN - {{b.isbn10}}</font>
+            <font size="2">Publication Year - {{b.publication_year}}</font>
+            {% if b.read_url == 'nan'%}
+                <font size="2">BOOK NOT AVAILABLE FOR READING</font>
+            {% else %}
+                <font size="2"><a href={{b.read_url}} target="_blank">READ</a></font>
+            {% endif %}
         </div>
       </div>
     {% endfor %}

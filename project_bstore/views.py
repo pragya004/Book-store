@@ -1,35 +1,42 @@
-from django.shortcuts import render,redirect
-from .models import book_table
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib import messages
-from .forms import UserRegisterForm,UserUpdateForm,ProfileUpdateForm
-from django.contrib.auth.decorators import login_required 
-from .models import post
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.decorators import login_required 
+from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import render,redirect
+from django.contrib import messages
+from .models import Book, post
+from .forms import UserRegisterForm,UserUpdateForm,ProfileUpdateForm
+
 
 def index(request):
-    book_details = book_table.objects.order_by('id')
+    book_details = Book.objects.order_by('id')
     context = {'book_details' : book_details}
     return render(request,'project_bstore/index.html',context)
 
 def searching(request):
-    query_string = ''
-    found_entries = None
-    if ('q' in request.POST) and request.POST['q'].strip():
-    	query_string = request.POST['q']
-    	title = book_table.objects.filter(title=query_string)
-    	authors = book_table.objects.filter(authors=query_string)
-    	context = {"book_details": list(title) + list(authors)}
-    	return render(request,"project_bstore/index.html",context)
+
+    criteria     = request.POST["criteria"]
+    query_string = request.POST['query']
+
+    if criteria == '1':
+        books = Book.objects.filter(isbn=query_string)        
+    elif criteria == '2':
+        books = Book.objects.filter(title=query_string)
+    else:
+        books = Book.objects.filter(author=query_string)
+        
+    context = {"book_details": books}
+        
+    return render(request,"project_bstore/index.html",context)
+
 
 def booksdetail(request):
     query_string = ''
     found_entries = None
     if ('q' in request.POST) and request.POST['q'].strip():
         query_string = request.POST['q']
-        title = book_table.objects.filter(title=query_string)
-        authors = book_table.objects.filter(authors=query_string)
+        title = Book.objects.filter(title=query_string)
+        authors = Book.objects.filter(author=query_string)
         context = {"book_details": list(title) + list(authors)}
         return render(request,"project_bstore/bookdetail.html",context)
 
