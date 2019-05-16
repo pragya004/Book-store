@@ -1,17 +1,33 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.contrib.auth.decorators import login_required 
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import Book, post
-from .forms import UserRegisterForm,UserUpdateForm,ProfileUpdateForm
-
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 
 def index(request):
-    book_details = Book.objects.order_by('id')
-    context = {'book_details' : book_details}
-    return render(request,'project_bstore/index.html',context)
+
+    global prefetched_books
+    global books_count
+    global num_pages
+
+    if "page" in request.GET:
+        page_no = int(request.GET["page"])
+    else:
+        prefetched_books = Book.objects.order_by("id")
+        books_count      = prefetched_books.count()
+        num_pages = int(books_count/100) + 1 if (books_count/100) - int(books_count/100) > 0 else int(books_count/100)
+        page_no   = 0
+
+    starting_book_index_for_page = page_no * 100
+
+    context = { "book_details" : prefetched_books[starting_book_index_for_page:starting_book_index_for_page + 100],
+                "num_pages" : range(num_pages)}
+
+    return render(request,"project_bstore/index.html", context)
+
 
 def searching(request):
 
@@ -19,7 +35,7 @@ def searching(request):
     query_string = request.POST['query']
 
     if criteria == '1':
-        books = Book.objects.filter(isbn=query_string)        
+        books = Book.objects.filter(isbn10=query_string)        
     elif criteria == '2':
         books = Book.objects.filter(title=query_string)
     else:

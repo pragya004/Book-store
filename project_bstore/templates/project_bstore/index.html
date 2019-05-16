@@ -37,21 +37,31 @@
     <br>
     <!-- for showing the book details on the home page -->
 
+    <div>
+        {% for idx in num_pages %}
+            <a href="?page={{idx}}" style="margin-right:10px">P{{idx}}</a>
+        {% endfor %}
+    </div>
+
     {% for b in book_details %}
-      <div class="details">
-        <hr>
-        <img class="books_images" src="{{ b.image_url }}">
-        <div class="text">
-          <font size="3">{{b.title}}</font><br>
-          <font size="2">By - {{b.author}}</font><br>
-          <font size="2">Rating - {{b.rating}}</font>
-          <form id="submit" method='POST' action='{% url "booksdetail" %}'>
-            {% csrf_token %}
-            <button name="q" value="{{ b.title }}" onclick="document.getElementById('submit').submit();">learn more</button>
-          </form>
+        <div class="details">
+            <hr>
+            <img class="books_images" src="{{ b.image_url }}">
+            <div class="text">
+                <font size="3">{{b.title}}</font><br>
+                <font size="2">By - {{b.author}}</font><br>
+                <font size="2">Rating - {{b.rating}}</font>
+                <form id="submit" method='POST' action='{% url "booksdetail" %}'>
+                    {% csrf_token %}
+                    <button name="q" value="{{ b.title }}" onclick="document.getElementById('submit').submit();">learn more</button>
+                </form>
+            </div>
         </div>
-      </div>
+
+    {% empty %} 
+        <h1>No Books Found according to the search criteria</h1>
     {% endfor %}
+
 
   </body>
 </html>
