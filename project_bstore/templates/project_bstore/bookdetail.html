@@ -54,24 +54,22 @@
 
     
     <!-- for showing the book details on the home page -->
-    {% for b in book_details %}
-      <div class="details">
+    <div class="details">
         <hr>
-        <img class="books_images" src="{{ b.image_url }}">
+        <img class="books_images" src="{{ book_details.image_url }}">
         <div class="text">
-            <font size="3">{{b.title}}</font><br>
-            <font size="2">By - {{b.author}}</font><br>
-            <font size="2">Rating - {{b.rating}}</font>
-            <font size="2">Book ISBN - {{b.isbn10}}</font>
-            <font size="2">Publication Year - {{b.publication_year}}</font>
-            {% if b.read_url == 'nan'%}
+            <font size="3">{{book_details.title}}</font><br>
+            <font size="2">By - {{book_details.author}}</font><br>
+            <font size="2">Rating - {{book_details.rating}}</font>
+            <font size="2">Book ISBN - {{book_details.isbn10}}</font>
+            <font size="2">Publication Year - {{book_details.publication_year}}</font>
+            {% if book_details.read_url == 'nan'%}
                 <font size="2">BOOK NOT AVAILABLE FOR READING</font>
             {% else %}
-                <font size="2"><a href={{b.read_url}} target="_blank">READ</a></font>
+                <font size="2"><a href={{book_details.read_url}} target="_blank">READ</a></font>
             {% endif %}
         </div>
-      </div>
-    {% endfor %}
+    </div>
 
 
   </body>

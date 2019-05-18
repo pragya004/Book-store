@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>B-Store</title>
+    </head>
+
+<body>
+
+    <div>
+        <form method="POST" action="{% url 'chat_create_group' %}">
+            {% csrf_token %}
+            <div>
+                <label for="group-name">Group Name:</label>
+                <input id="group-name" name="group-name" required>
+            </div>
+            <div>
+                <label for="group-description">Description</label>
+                <textarea id="group-description" name="group-description" required></textarea>
+            </div>
+
+            <button type="submit">SUBMIT</button>
+        </form>
+    </div>
+</body>
+</html>

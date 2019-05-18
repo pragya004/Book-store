@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="{% static 'chat/chat_index_group.css' %}">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.js"></script>
+        <script src="{% static 'chat/js/chat_index_group.js' %}"></script>
+        <title>B-Store</title>
+    </head>
+
+<body>
+<div ng-app="myApp" id="main-div">
+    <div id="section-1">
+        <div id="profile-details">
+            <div id="profilepic">
+            </div>
+            <p id="email">{{ user_details.email }}</p>
+            <p id="pname">{{ user_details.username }}</p>
+        </div>
+
+        <div id="groups-div">
+            <h1>Groups</h1>
+            <div id="create-group">
+                <a href="{% url 'chat_create_group' %}">Create Group</a>
+            </div>
+            <div id="groups-list" ng-controller="setup">
+            </div>
+        </div>
+    </div>
+
+    <div id="section-2">
+        <div id="nav-bar">
+            <span id="brand">B-Store</span>
+            <a id="top" href="{% url 'logout' %}">Logout</a>
+            <a id="top" href="{% url 'bstore_home' %}">Home</a>
+            <a id="top" href="{% url 'chat_index_direct_url' %}">Direct Chats</a>
+            <a id="selected_group"></a>
+            <br>
+            Group Description: <a id="group_description"></a>
+        </div>
+
+        <div ng-controller="user" style="border:0px;margin:0px;padding:0px;">
+
+            <div id="chat-space"> 
+
+            </div>
+
+            <div>
+                <input type="text" id ="name" name="chat-box" class="chat-box" ng-model="body" placeholder="type here ...">
+                <button style="cursor: pointer;"class="enter" ng-click="sendMsg()"></button>
+            </div>
+
+        </div>
+
+
+
+    </div>
+</div>
+</body>
+</html>

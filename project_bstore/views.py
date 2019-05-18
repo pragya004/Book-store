@@ -47,13 +47,10 @@ def searching(request):
 
 
 def booksdetail(request):
-    query_string = ''
-    found_entries = None
-    if ('q' in request.POST) and request.POST['q'].strip():
-        query_string = request.POST['q']
-        title = Book.objects.filter(title=query_string)
-        authors = Book.objects.filter(author=query_string)
-        context = {"book_details": list(title) + list(authors)}
+
+        idx = request.POST['q']
+        book = Book.objects.get(pk=int(idx))
+        context = {"book_details": book}
         return render(request,"project_bstore/bookdetail.html",context)
 
 def register(request):
@@ -105,8 +102,10 @@ class PostListView(ListView):
     context_object_name = 'posts'
     ordering = ['-date_posted']
 
+
 class PostDetailView(DetailView):
     model = post
+
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = post
@@ -115,6 +114,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.seller = self.request.user
         return super().form_valid(form)
+
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = post

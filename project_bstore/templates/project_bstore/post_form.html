@@ -2,20 +2,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-
     <meta charset="UTF-8">
-    
-    
     <title>register</title>
- 
   </head>
-
   <body>
-
     <!-- the registration forms -->
-
     <div >
-      <form method="POST">
+      <form method="POST" action="{% url 'post-create' %}">
           {% csrf_token %}
           <fieldset>
               <legend >blog post</legend>

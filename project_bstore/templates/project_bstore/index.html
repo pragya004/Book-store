@@ -18,17 +18,19 @@
                 <option value="3">Author</option>
             </select>
             <input type="text" name='query' id="search-bar" placeholder="search here" required>
-            <img class="search-icon" src="{% static 'project_bstore/images/s9.png'%}" onclick="document.getElementById('submit').submit();">
+            <img class="search-icon" src="{% static 'project_bstore/images/s9.png'%}" style="cursor:pointer;" onclick="document.getElementById('submit').submit();">
         </form> 
     </div>
     
 
     <!-- for the Navigation tabs -->
     {% if user.is_authenticated %}
-        <a href="{% url 'bstore_home' %}">home</a>
+        <a href="{% url 'index' %}">home</a>
         <a href="{% url 'profile' %}">profile</a>
         <a href="{% url 'sellbookpage' %}">sell a book</a>
         <a href="{% url 'logout' %}">Logout</a>
+        <a href="{% url 'chat_index_direct_url' %}">Direct Chats</a>
+        <a href="{% url 'chat_index_group_url' %}">Group Chats</a>
     {% else %}
       <a href="{% url 'login' %}">Login</a>
       <a href="{% url 'bstore_register' %}">Register</a>
@@ -53,7 +55,7 @@
                 <font size="2">Rating - {{b.rating}}</font>
                 <form id="submit" method='POST' action='{% url "booksdetail" %}'>
                     {% csrf_token %}
-                    <button name="q" value="{{ b.title }}" onclick="document.getElementById('submit').submit();">learn more</button>
+                    <button name="q" value="{{ b.id }}" type="submit">learn more</button>
                 </form>
             </div>
         </div>
