@@ -1,6 +1,6 @@
 var app = angular.module("myApp", []);
-
 app.controller("setup",function($rootScope,$http,$compile){
+
 
     var api_url = "http://127.0.0.1:8000/chat/api/fetch/groups/";
   
@@ -42,7 +42,8 @@ app.controller("user", function($scope,$rootScope,$http,$interval) {
 
             if(len != response.data["messages"].length)
             { 
-                var diff = response.data["messages"].length - len;
+                var diff = response.data["messages"]
+                .length - len;
                 len = response.data["messages"].length;
                 var messages = response.data["messages"].slice(-diff);
 
@@ -96,7 +97,7 @@ app.controller("user", function($scope,$rootScope,$http,$interval) {
 
     function deleteMessages()
     {
-        var myNode = document.getElementsByClassName("chat-space");
+        var myNode = document.getElementById("chat-space");
 
         while (myNode.firstChild)
             myNode.removeChild(myNode.firstChild);

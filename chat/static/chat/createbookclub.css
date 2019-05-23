@@ -1,0 +1,112 @@
+.buttom 
+{
+	font-size: 17px;
+	width:200px;
+	color: white;
+	font-family: 'Open Sans', sans-serif;
+	margin-top:1.5em;
+	border: none;
+	/*background-color: rgb(150,221,173);*/
+}
+.body
+{
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+}
+button
+{
+	margin-left: 1em;
+	margin-top: 0px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	color: white;
+	width: 150px;
+
+	border:none;
+	background-color: rgb(150,221,173);
+}
+button:hover,button:focus
+{
+	background-color:rgb(111,186,135); 
+}
+.content-section
+{
+  position: absolute;
+  width: 60%;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-top: 3%;
+  border: 1px solid lightgrey;
+  border-radius:4px 4px 4px 4px;
+  padding:2em 2em 2em 2em;
+}
+.new a
+{
+  color: white;
+  margin-top: 2em;
+}
+body
+{
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+}
+.logo
+{
+  color: lightgrey;
+  float: left;
+  margin-left: 5%;
+  margin-top: 1.8%;
+}
+.menu1 
+{
+  background-color: black;
+  width: 100%;
+  margin: 0px 0px 0px 0px;
+  height: 60px;
+  margin-bottom: 1em;
+}
+.page
+{
+  margin-top: 50px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+.page a
+{
+  
+  text-decoration: none;
+  outline: none;
+  font-family: 'Open Sans', sans-serif;
+  color: grey;
+  text-decoration: none;
+}
+.page a:hover,a:active,a:focus
+{
+  outline: none;
+  text-decoration: none;
+  color: rgb(150,221,173);
+}
+.menu1 a
+{
+  outline: none;
+  font-family: 'Open Sans', sans-serif;
+  color: lightgrey;
+  text-decoration: none;
+  float: right;
+  padding:1.5% 3% 0% 0%;
+}
+/*light
+rgb(150,221,173)
+rgb(111,186,135)*/
+.menu1 a:hover,a:active,a:focus
+{
+  outline: none;
+  text-decoration: none;
+  color: rgb(150,221,173);
+}
+.menu1 h2
+{
+  float:left;
+}
+
+

@@ -6,71 +6,58 @@
   <head>
     
     <meta charset="UTF-8">
-    
-    <link rel="stylesheet" href="{% static 'project_bstore/search.css' %}">
-    <link rel="stylesheet" href="{% static 'project_bstore/search_top.css' %}">
-    
-    <link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" type='text/css'>
-    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Book detail</title>
+    <link rel="stylesheet" href="{% static 'project_bstore/bookdetail.css' %}">   
+     
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
     <title>index</title>
   
   </head>
 
   <body>
     
-    <!-- the logo and the search bar -->
-    <div class="logo">
-      <p>THE B-STORE 
-        <form class="search-container" id="submit" method='POST' action='{% url "searching" %}'>
-          {% csrf_token %}
-          <input type="text" name='q' id="search-bar" placeholder="search here">
-          <img class="search-icon" src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png" onclick="document.getElementById('submit').submit();">
-        </form>
-      </p> 
-    </div>
+
+    <div class="menu1"> 
+
+      {% if user.is_authenticated %}
+        <div class="logo">B-Store</div>
+        <a href='#'>contact us</a>
+        <a href="{% url 'logout' %}">Logout</a>
+        <a href="{% url 'profile' %}">profile</a>
+        <a href="{% url 'chat_index_direct_url' %}">Chat with a seller/buyer</a>
+        <a href="{% url 'chat_index_group_url' %}">Book Clubs</a>
+        <a href="{% url 'sellbookpage' %}">sell/buy/exchange books</a>
+        <a href="{% url 'bstore_home' %}">home</a>
+        
+      {% else %}  
+        <div class="logo">B-Store</div>
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'bstore_register' %}">Register</a>
+      {% endif %}
     
-
-    <!-- for the fuckin' tabs -->
-    <div class="container">    
-        
-        <input type="radio" id="tab1" name="tab" checked>
-        <label for="tab1"><a id="tab1" href="{% url 'bstore_home' %}">home</a></label>
-
-        <input type="radio" id="tab2" name="tab">
-        <label for="tab2">categories</label>
-        
-        <input type="radio" id="tab3" class="yoyo" name="tab">
-        <label for="tab3"><a id="tab3" href="{% url 'bstore_register' %}">register / login</a></label>
-
-        <input type="radio" id="tab4" name="tab">
-        <label for="tab4">help</label>
-        
-        <!-- the small line that shows below all those tabs -->
-        <div class="line"></div>
-
     </div>
-
     
     <!-- for showing the book details on the home page -->
     <div class="details">
-        <hr>
         <img class="books_images" src="{{ book_details.image_url }}">
         <div class="text">
-            <font size="3">{{book_details.title}}</font><br>
-            <font size="2">By - {{book_details.author}}</font><br>
-            <font size="2">Rating - {{book_details.rating}}</font>
-            <font size="2">Book ISBN - {{book_details.isbn10}}</font>
-            <font size="2">Publication Year - {{book_details.publication_year}}</font>
+            <p class="titl">{{book_details.title}}</p><br>
+            <p class="smtxt">By - {{book_details.author}}</p><br>
+            <p class="smtxt">Rating - {{book_details.rating}}</p>
+            <p class="smtxt">Book ISBN - {{book_details.isbn10}}</p>
+            <p class="smtxt">Publication Year - {{book_details.publication_year}}</p>
             {% if book_details.read_url == 'nan'%}
-                <font size="2">BOOK NOT AVAILABLE FOR READING</font>
+                <p class="smtxt">BOOK NOT AVAILABLE FOR READING</p>
             {% else %}
-                <font size="2"><a href={{book_details.read_url}} target="_blank">READ</a></font>
+            <div class="newb">
+                <a href={{book_details.read_url}} target="_blank">Read / Listen</a></div>
             {% endif %}
         </div>
     </div>
 
-
+    <div style="position:absolute;bottom: 10px;left: 500px;color: grey;"><footer><center>&copy; Copyright 2019 bstore</center></footer></div>
   </body>
 </html>

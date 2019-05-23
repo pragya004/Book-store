@@ -1,18 +1,79 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="{% static 'project_bstore/post-conf.css' %}">  
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 	<title>sell or lend a book</title>
+
 </head>
 <body>
-	<img src="{{object.seller.profile.image.url}}">
-	<h2>{{ object.title }}</h2>
-	<p>By {{ object.seller }} on {{ object.date_posted|date:"F d, Y" }}</p>
-
-	{% if object.seller == user %}
-		<a href="{% url 'post-update' object.id%}">update</a>
-		<a href="{% url 'post-delete' object.id%}">delete</a>
-	{% endif %}
-	<p>{{ object.content }}</p>
+	<div class="menu1">  
+      {% if user.is_authenticated %}
+        <div class="logo">B-Store</div>
+        <a href='#'>contact us</a>
+        <a href="{% url 'logout' %}">Logout</a>
+        <a href="{% url 'profile' %}">profile</a>
+        <a href="{% url 'chat_index_direct_url' %}">Chat with a seller/buyer</a>
+        <a href="{% url 'chat_index_group_url' %}">Book Clubs</a>
+        <a href="{% url 'sellbookpage' %}">sell/buy/exchange books</a>
+        <a href="{% url 'bstore_home' %}">home</a>
+        
+      {% else %}  
+        <div class="logo">B-Store</div>
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'bstore_register' %}">Register</a>
+      {% endif %}
+    
+    </div>
+    <article class="media content-section" >
 	
-</body>
+		
+
+		<div class="media-body" style="width: 50%;">	
+
+			<div class="article-metadata" >
+				<img style="width: 100px;height: 100px;" class="article-img" src="{{object.seller.profile.image.url}}">	
+
+				<h2 style="position:absolute;top: 30px;color:#427050;letter-spacing: 1px;font-family: 'Open Sans', sans-serif;font-size: 27px;margin-left: 5.5em;width:550px;word-wrap: break-word; height:70px;overflow-y: auto;">{{ object.title }}
+
+				</h2>
+				<div style="position: absolute;display: inline-block; margin-left: 3.2em;
+					margin-top: 5.2em;">
+					<small class="text-muted" >By</small>
+					
+					<a class="mr-2" href="#">{{ object.seller }}</a>
+					
+					<small class="text-muted">on {{ object.date_posted|date:"F d, Y"}}</small>
+				</div>
+		  		
+				
+			</div>
+
+
+			<img style="width: 300px;height: 300px;margin-top: 2em;" class="article-img" src="{{object.picture.url}}">	
+
+		  	<p style="margin-top:2em;overflow:auto; width: 710px;height: auto;overflow-wrap: break-word;letter-spacing: 1px;font-family: 'Open Sans', sans-serif;" class="article-content">{{ object.content }}</p>
+
+		  	<div>
+				{% if object.seller == user %}
+				
+					<a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id%}">Update</a>
+					<a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id%}">Delete</a>
+				
+				{% endif %}
+				</div>
+		</div>
+	</article>
+  </body>
 </html>

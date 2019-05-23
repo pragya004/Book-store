@@ -2,80 +2,61 @@
 <!DOCTYPE html>
 <html>
   <head>
-
+    
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
-    <link rel="stylesheet" href="{% static 'project_bstore/search.css' %}">
-    <link rel="stylesheet" href="{% static 'project_bstore/search_top_register.css' %}">
-    
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+    <link rel="stylesheet" href="{% static 'project_bstore/login_css.css' %}">    
     <title>login</title>
- 
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    
   </head>
 
   <body>
-  
-    <!-- the top and search bar -->
-    <div class="logo">
-      <p>THE B-STORE 
-        <form class="search-container" id="submit" method='POST' action='{% url "searching" %}'>
-          {% csrf_token %}
-          <input type="text" name='q' id="search-bar" placeholder="search here">
-          <img class="search-icon" src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png" onclick="document.getElementById('submit').submit();">
-        </form>
-      </p> 
-    </div>
+    
+    {% load crispy_forms_tags %}
       
-      
-    <!-- those tabs again -->
-    <div class="container">  
-      <input type="radio" id="tab1" name="tab" >
-      <label for="tab1"><a id="tab1" href="{% url 'index' %}">home</a></label>
-
-      <input type="radio" id="tab2" name="tab">
-      <label for="tab2">categories</label>
-       
-      <input type="radio" id="tab3" name="tab" checked>
-      <label for="tab3"><a id="tab3" href="{% url 'login' %}">Login</a></label>
-
-      <input type="radio" id="tab4" name="tab">
-      <label for="tab4">help</label>
-      
-      <div class="line"></div>
+    <div class="menu">  
+      <div class="logo">B-Store</div>
+      <a href='#'>contact us</a>
+      <a href="{% url 'bstore_register'%}">register</a>
+      <a href="{% url 'bstore_home' %}">home</a> 
     </div>
 
-    <!-- for showing the user created yayy message -->
-    <div>
+    <center>
+    <div col-md-10>
     {% if messages %}
       {% for message in messages %}
-        <div class="alert">
-          <center>{{message}}</center>
+        <div class="alert alert-{{message.tags}}" >
+          {{message}}
         </div>
       {% endfor %}
     {% endif %} 
     </div>
+    </center>
 
 
     <!-- the login form -->
-    
-    <div >
+    <div class="container">
       <form method="POST">
+          <p class="log"> Login Form</p>
           {% csrf_token %}
-          <fieldset>
-              <legend >Log In</legend>
-              {{form}}
-          </fieldset>
-          <div>
-              <button type="submit">Login</button>
+              {{ form|crispy }}
+              <button type="submit" class="buttom">Login</button>
+          <div class="secondlink">
+              <p>Need An Account? <a href="{% url 'bstore_register' %}">Register</a></p>
           </div>
       </form>
-      <div>
-          <small>
-              Need An Account? <a href="{% url 'bstore_register' %}">Register</a>
-          </small>
-      </div>
+      <div class = "copy">&copy; Copyright 2019 bstore</div>
     </div>
     
 
-
+  <!-- plugins for bootstrap -->
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
 </html>

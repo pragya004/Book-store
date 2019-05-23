@@ -2,7 +2,66 @@
     margin: 0px;
     padding: 0px;
 }
+.new
+{
+    position: absolute;
+    color:blue;
+    margin-top: 6em;
+    width: 350px;
+    height: 120px;
+}
+#group_description
+{
+    width: 350px;
+    display: inline-block;
+    position: absolute;
+    color:darkgrey;
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 2px;
+    overflow: auto;
+    font-size: 15px;
+    margin-left: 1em;
+    overflow-wrap: break-word;
+    height: 35px;
+    margin-top: 5px;
 
+}
+.sender-text
+{
+    margin-top: 10px;
+    font-size: 15px;
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 2px;
+    color: darkgrey ;
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+}
+.received-text
+{
+
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+    margin-top: 10px;
+    font-size: 15px;
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 2px;
+    color:green;
+}
+.new p
+{
+    margin-top: 3.5em;
+    margin-left: 1em;
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 2px;
+    color: #1a1c1a;
+
+}
+.new a
+{
+    width: 100px;
+  color: red;
+  margin-top: 1em;
+}
 #section-1{
     float: left;
     margin: 1px;
@@ -23,17 +82,43 @@
 }
 
 #groups-list{
-    height: 400px;
-    border: 2px black solid;
+    border:1px solid  lightgrey;
+    position: absolute;
+    width: 382px;
+    height: 356px;
+    margin-top: 0px;
     overflow: auto;
+
+/*
+    height: 300px;
+    border: 2px black solid;
+    overflow: auto;*/
 }
 
 #create-group{
-
+    width:500px;
     height: 50px;
-    border: 2px red solid;
+    margin-top: 23em;
 }
-
+#create-group a
+{
+    font-size: 17px;
+    width:500px;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    margin-top:3em;
+    padding-top: 10px;
+    padding-left:8.2em;
+    padding-right: 8.2em;
+    padding-bottom: 10px;
+    border: none;
+    text-decoration: none;
+    background-color: rgb(150,221,173);
+}
+#create-group a:hover,a:focus,a:active
+{
+    background-color:rgb(111,186,135); 
+}
 #nav-bar{
     width: 100%;
     height: 100px;
@@ -46,34 +131,83 @@
 
 #chat-space{
 
-    border: 2px red solid;
-    height: 450px;
+    border-top: 1px solid lightgrey;
+    border-left: 1px solid lightgrey;
+    border-right: 1px solid lightgrey;
+    border-left: 1px solid lightgrey;
+    border-right: 1px solid lightgrey;
+    height: 519px;
     overflow:auto;
+    margin-top: 1.5em;
+    margin-right: 1.5em;
 }
 
 input{
-    width: 69%;
+    border:none;
+    width: 88.1%;
     padding-left: 20px;
     padding-right: 20px;
-    height:50px;
+    /*margin-top: 16px;*/
+    height:42px;
+    border-left: 1px solid lightgrey;
+    border-right: 1px solid white;
+    border-top: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
+    
 }
 
 .enter
 {
-    bottom: 9.5%;
-    right: 6%;
-    width: 36px;
-    height:36px;
+    /*bottom: 9.5%;
+    right: 20%;
+
+    */
+    position:absolute;
+    width: 40px;
+    height:44px;
     background-image: url("images/enter.png");
     background-color: white;
     border:none;
+    border-left: 1px solid white;
+    border-right: 1px solid lightgrey;
+    border-top: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
 }
-
+#selected_group{
+     position: absolute;
+     color: darkgrey;
+     margin-top: 0.6em;
+     margin-left: 9.5em;
+     font-size:18px;
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 2px;
+    overflow: auto;
+    overflow-wrap: break-word;
+    height: 30px;
+    width: 200px;
+}
 .group-name{
-    font-size:20px;
+    margin-top: 1em;
+    margin-right: 1em;
+    margin-left: 1em;
+    font-size:18px;
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 2px;
+    color: grey;
 }
 
 .group-name:hover{
     cursor: pointer;
-    color: red;
+    color: rgb(111,186,135);
+}
+#pname
+{
+    font-family: 'Open Sans', sans-serif;
+    color:grey
+    font-size:30px;
+    letter-spacing: 2px;
+    margin-left: 2em;
+    margin-top: 5em;
+    position: absolute;
+    display: inline-block;
 }

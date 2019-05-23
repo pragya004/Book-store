@@ -3,100 +3,63 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
         <link rel="stylesheet" href="{% static 'chat/chat_index.css' %}">
+        <link rel="stylesheet" href="{% static 'chat/searchchat.css' %}">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.js"></script>
         <script src="{% static 'chat/js/chat_index_direct.js' %}"></script>
-        <title>B-Store Discussions</title>
+        <title>chat</title>
     </head>
 
 <body>
 <div ng-app="myApp" style="border:0px;margin:0px;padding:0px;">
 
-    <div class="kiwi">
-        <p>B-Store<br></p>
-        <a id="top" href="{% url 'logout' %}">Logout</a>
-        <a id="top" href="{% url 'bstore_home' %}">Home</a>
-        <a id="top" href="{% url 'chat_index_group_url' %}">Groups</a>
-        <a id="selected_user"></a>
-    </div>
+    <div class="menu1"> 
 
-    <div class="lrec">
+      {% if user.is_authenticated %}
+        <div class="logo">B-Store</div>
+        <a href='#'>contact us</a>
+        <a href="{% url 'logout' %}">Logout</a>
+        <a href="{% url 'profile' %}">profile</a>
+        <a href="{% url 'chat_index_group_url' %}">Book Clubs</a>
+        <a href="{% url 'sellbookpage' %}">sell/buy/exhange books</a>
+        <a href="{% url 'bstore_home' %}">home</a>
+        <a id="selected_user"></a>        
+      {% else %}  
+        <div class="logo">B-Store</div>
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'bstore_register' %}">Register</a>
+      {% endif %}
+    
     </div>
+    
 
     <div class="profilepic">
+        <img src="{{ user_details.profile.image.url }}">
     </div>
 
     <div class="profile-details">
-        <p id="email">{{ user_details.email }}</p>
         <p id="pname">{{ user_details.username }}</p>
     </div>
 
     <div class="contacts" ng-controller="setup">
-    <!--
-        <div class="container">
-            <div class="contacts-pic"></div>
-            <div class="name">name here</div>
-        </div>
-        <div class="container">
-            <div class="contacts-pic"></div>
-            <div class="name">name here</div>
-        </div>
-        <div class="container">
-            <div class="contacts-pic"></div>
-            <div class="name">name here</div>
-        </div>
-        <div class="container">
-            <div class="contacts-pic"></div>
-            <div class="name">name here</div>
-        </div>
-        <div class="container">
-            <div class="contacts-pic"></div>
-            <div class="name">name here</div>
-        </div>
-        <div class="container">
-            <div class="contacts-pic"></div>
-            <div class="name">name here</div>
-        </div>    -->
     </div>
 
 
-<div ng-controller="user" style="border:0px;margin:0px;padding:0px;">
+    <div ng-controller="user" style="border:0px;margin:0px;padding:0px;">
 
-    <div >
-    <input type="text" id ="name" name="chat-box" class="chat-box" ng-model="body" placeholder="type here ...">
-    <button style="cursor: pointer;"class="enter" ng-click="sendMsg()"></button>
+        <div>
+            <input type="text" id ="name" name="chat-box" class="chat-box" ng-model="body" placeholder="type here ...">
+            <button style="cursor: pointer;"class="enter" ng-click="sendMsg()"></button>
+        </div>
+
+
+        <div class="chat-space"> 
+        </div>
+
     </div>
-
-
-    <!-- <span style="color:white;" id="selected_user"></span> -->
-    <div class="chat-space"> 
-        <!-- <div class="received-text">
-            <p>lorem ipsun blabla bla bla black sheep. lorem ipsun blabla bla bla black sheep</p>
-        </div>
-        
-        <div class="sender-text">
-            <p>lorem ipsun blabla bla bla black sheep. lorem ipsun blabla bla bla black sheep</p>
-        </div>
-        <div class="received-text">
-            <p>lorem ipsun blabla bla bla black sheep. lorem ipsun blabla bla bla black sheep</p>
-        </div>
-        
-        <div class="sender-text">
-            <p>lorem ipsun blabla bla bla black sheep. lorem ipsun blabla bla bla black sheep</p>
-        </div>
-        <div class="received-text">
-            <p>lorem ipsun blabla bla bla black sheep. lorem ipsun blabla bla bla black sheep</p>
-        </div>
-        
-        <div class="sender-text">
-            <p>lorem ipsun blabla bla bla black sheep. lorem ipsun blabla bla bla black sheep</p>
-        </div> -->
-            
-    </div>
-
-<!-- <div class="footer-class"><p>&copy; Copyright 2019 KiWi.inc</p></div> -->
-
-</div>
 </div>
 </body>
 </html>

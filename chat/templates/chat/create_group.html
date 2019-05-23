@@ -3,24 +3,45 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>B-Store</title>
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'chat/createbookclub.css' %}">
+        <title>Create book club</title>
     </head>
 
 <body>
+    <div class="menu1"> 
 
+      {% if user.is_authenticated %}
+        <div class="logo">B-Store</div>
+        <a href='#'>contact us</a>
+        <a href="{% url 'logout' %}">Logout</a>
+        <a href="{% url 'profile' %}">profile</a>
+        <a href="{% url 'chat_index_group_url' %}">Book Clubs</a>
+        <a href="{% url 'chat_index_direct_url' %}">Chat with a seller/buyer</a>
+        <a href="{% url 'sellbookpage' %}">sell/buy/exchange books</a>
+        <a href="{% url 'bstore_home' %}">home</a>
+      {% else %}  
+        <div class="logo">B-Store</div>
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'bstore_register' %}">Register</a>
+      {% endif %}
+    
+    </div>
     <div>
         <form method="POST" action="{% url 'chat_create_group' %}">
             {% csrf_token %}
             <div>
-                <label for="group-name">Group Name:</label>
+                <label style="font-size: 15px;font-family: 'Open Sans', sans-serif;letter-spacing: 2px;color:green;margin-left: 1em;margin-top: 1em;margin-bottom: 2em;" for="group-name">Group Name:</label>
                 <input id="group-name" name="group-name" required>
             </div>
             <div>
-                <label for="group-description">Description</label>
+                <label style="font-size: 15px;font-family: 'Open Sans', sans-serif;letter-spacing: 2px;color:green;margin-left: 1em;margin-top: 1em;" for="group-description">Description</label>
                 <textarea id="group-description" name="group-description" required></textarea>
             </div>
-
-            <button type="submit">SUBMIT</button>
+            <div class="buttom">
+            <button type="submit">Submit</button></div>
         </form>
     </div>
 </body>

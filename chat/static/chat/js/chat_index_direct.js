@@ -1,5 +1,5 @@
 var app = angular.module("myApp", []);
-
+// communicates with get_users view to show all the users 
 app.controller("setup",function($rootScope,$http,$compile){
 
     var api_url = "http://127.0.0.1:8000/chat/api/fetch/users/";
@@ -34,7 +34,7 @@ app.controller("setup",function($rootScope,$http,$compile){
 
 });
 
-
+//fetches convos and messages from restapi and displays them
 app.controller("user", function($scope,$rootScope,$http,$interval) {
 
   var len;
@@ -105,8 +105,10 @@ app.controller("user", function($scope,$rootScope,$http,$interval) {
     function deleteMessages()
     {
 
-        var myNode = document.getElementsByClassName("chat-space");
+        var myNode = document.getElementsByClassName("chat-space")[0];
       
+        console.log(myNode);
+        
         while (myNode.firstChild)
             myNode.removeChild(myNode.firstChild);
     }
@@ -140,11 +142,6 @@ app.controller("user", function($scope,$rootScope,$http,$interval) {
 
 
 });
-
-
-
-  
-
 // app.controller("login", function($scope){
 
 // });

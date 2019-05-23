@@ -6,7 +6,7 @@ from .models import *
 import json
 
 def chat_index_direct(request):
-
+    #to render the initial page
     if request.user.pk == None:
         return redirect('login')
     
@@ -15,7 +15,7 @@ def chat_index_direct(request):
     return render(request,"chat/chat_index_direct.html", context)
 
 def chat_index_group(request):
-
+    #to render the initial page
     if request.user.pk == None:
         return redirect('login')
     
@@ -25,7 +25,7 @@ def chat_index_group(request):
 
 
 def chat_create_group(request):
-
+    #creates a group
     if request.method == "GET":
         return render(request,"chat/create_group.html")
     elif request.method == "POST":
@@ -40,7 +40,7 @@ def chat_create_group(request):
         return redirect("chat_index_group_url")
 
 def get_users(request):
-
+    #shows all users in the side panel
     users = User.objects.exclude(id=request.user.pk) 
     data = {"user_names": [{"username": user.username, "id": user.id} for user in users]}
     data_json = json.dumps(data)
@@ -48,7 +48,7 @@ def get_users(request):
 
 
 def get_groups(request):
-
+    #shows all groups in the side panel
     groups = Group.objects.all()
     data = {"group_details": [{"name": group.name, "description": group.description, "id": group.id} for group in groups]}
     data_json = json.dumps(data)
@@ -57,15 +57,15 @@ def get_groups(request):
 
 
 def get_direct_conversation(request):
+    # checks is direct chat exists or not between user1 and user 2
     
     idx = request.GET["id"]
     
     user1 = User.objects.get(pk=request.user.pk)
     user2 = User.objects.get(pk=idx)
 
-
-    conv1 = DirectChat.objects.filter(sender=user1).filter(receiver=user2)
-    conv2 = DirectChat.objects.filter(sender=user2).filter(receiver=user1) 
+    conv1 = DirectChat.objects.filter(sender=user1).filter(receiver=user2)#returns number of items in
+    conv2 = DirectChat.objects.filter(sender=user2).filter(receiver=user1) #the list
 
     
     if conv1.count() and not conv2.count():
@@ -86,7 +86,7 @@ def get_direct_conversation(request):
 def adduser_to_group(request):
 
     group = Group.objects.get(pk=int(request.GET["id"]))
-
+    #checks in terminal
     if request.user not in group.member.all():
         print("Not Present")
     else:
@@ -100,7 +100,7 @@ def adduser_to_group(request):
 
 @csrf_exempt
 def messages(request):
-
+#gets the convo id and shows all the messages corresponding it.
     if request.method == "GET":
         if request.GET["type"] == "1":
 
@@ -120,7 +120,7 @@ def messages(request):
         data_json = json.dumps(data)
 
         return HttpResponse(data_json, content_type="application/json")
-
+#saves the messages that users send to the database
     elif request.method == "POST":
         
         sender = User.objects.get(pk=request.user.id)  

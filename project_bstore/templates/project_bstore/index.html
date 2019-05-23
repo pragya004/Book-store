@@ -1,69 +1,84 @@
 {% load static %}
 <!DOCTYPE html>
+
 <html>
+  
   <head>
+    
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{% static 'project_bstore/search.css' %}">
-    <link rel="stylesheet" href="{% static 'project_bstore/search_top.css' %}">
-    <title>index</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>home</title>
+    <link rel="stylesheet" href="{% static 'project_bstore/search.css' %}">   
+     
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  
   </head>
+  
   <body>
-    <!-- the logo and the search bar -->
-    <div> 
-        <form class="search-container" id="submit" method='POST' action='{% url "searching" %}'>
+
+
+    
+    <div class="menu1"> 
+
+      {% if user.is_authenticated %}
+        <div class="logo">B-Store</div>
+        <a href='#'>contact us</a>
+        <a href="{% url 'logout' %}">Logout</a>
+        <a href="{% url 'profile' %}">profile</a>
+        <a href="{% url 'chat_index_direct_url' %}">Chat with a seller/buyer</a>
+        <a href="{% url 'chat_index_group_url' %}">Book Clubs</a>
+        <a href="{% url 'sellbookpage' %}">sell/buy/exchange books</a>
+        <a href="{% url 'bstore_home' %}">home</a>
+        
+      {% else %}  
+        <div class="logo">B-Store</div>
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'bstore_register' %}">Register</a>
+      {% endif %}
+    
+    </div>
+    
+    <br> 
+        <form id="submit" method='POST' action='{% url "searching" %}'>
           {% csrf_token %}
-            <select name="criteria">
+            <input type="text" name='query' id="search-bar" placeholder="search here.." required>
+            <button class="search-icon" onclick="document.getElementById('submit').submit();"></button>
+            <select class="sele" name="criteria">
                 <option value="1">ISBN</option>
                 <option value="2">Title</option>
                 <option value="3">Author</option>
             </select>
-            <input type="text" name='query' id="search-bar" placeholder="search here" required>
-            <img class="search-icon" src="{% static 'project_bstore/images/s9.png'%}" style="cursor:pointer;" onclick="document.getElementById('submit').submit();">
         </form> 
-    </div>
+    </br>
     
 
-    <!-- for the Navigation tabs -->
-    {% if user.is_authenticated %}
-        <a href="{% url 'index' %}">home</a>
-        <a href="{% url 'profile' %}">profile</a>
-        <a href="{% url 'sellbookpage' %}">sell a book</a>
-        <a href="{% url 'logout' %}">Logout</a>
-        <a href="{% url 'chat_index_direct_url' %}">Direct Chats</a>
-        <a href="{% url 'chat_index_group_url' %}">Group Chats</a>
-    {% else %}
-      <a href="{% url 'login' %}">Login</a>
-      <a href="{% url 'bstore_register' %}">Register</a>
-    {% endif %}
-    <br>
-    <br>
-    <!-- for showing the book details on the home page -->
-
-    <div>
-        {% for idx in num_pages %}
-            <a href="?page={{idx}}" style="margin-right:10px">P{{idx}}</a>
-        {% endfor %}
-    </div>
 
     {% for b in book_details %}
         <div class="details">
-            <hr>
             <img class="books_images" src="{{ b.image_url }}">
             <div class="text">
-                <font size="3">{{b.title}}</font><br>
-                <font size="2">By - {{b.author}}</font><br>
-                <font size="2">Rating - {{b.rating}}</font>
+                <p class="titl">{{b.title}}</p><br>
+                <p class="smtxt">By - {{b.author}}</p><br>
+                <p class="smtxt"> Rating - {{b.rating}}</p>
                 <form id="submit" method='POST' action='{% url "booksdetail" %}'>
                     {% csrf_token %}
-                    <button name="q" value="{{ b.id }}" type="submit">learn more</button>
+                    <div class="newb">
+                    <button name="q" value="{{ b.id }}" type="submit">learn more</button></div>
                 </form>
             </div>
         </div>
+
+   
 
     {% empty %} 
         <h1>No Books Found according to the search criteria</h1>
     {% endfor %}
 
-
+    <div class="page" >
+        {% for idx in num_pages %}
+            <a href="?page={{idx}}" style="margin-right:10px">P{{idx}}</a>
+        {% endfor %}
+    </div>
+    <div><center>&copy; Copyright 2019 bstore</center></div>
   </body>
 </html>

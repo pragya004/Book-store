@@ -1,0 +1,99 @@
+.content-section
+{
+  position: absolute;
+  width: 60%;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-top: 3%;
+  border: 1px solid lightgrey;
+  border-radius:4px 4px 4px 4px;
+  padding:2em 2em 2em 2em;
+}
+button
+{
+  border: none;
+}
+body
+{
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+}
+.logo
+{
+  color: lightgrey;
+  float: left;
+  margin-left: 5%;
+  margin-top: 1.8%;
+}
+.menu1 
+{
+  background-color: black;
+  width: 100%;
+  margin: 0px 0px 0px 0px;
+  height: 60px;
+}
+
+
+.menu1 a
+{
+  outline: none;
+  font-family: 'Open Sans', sans-serif;
+  color: lightgrey;
+  text-decoration: none;
+  float: right;
+  padding:1.5% 3% 0% 0%;
+}
+.menu1 a:hover,a:active,a:focus
+{
+  outline: none;
+  text-decoration: none;
+  border:none;
+  color: rgb(150,221,173);
+}
+.menu1 h2
+{
+  float:left;
+}
+#submit
+{
+  margin-top: 0px;
+  margin-left:30%;
+  width: 35%;
+  height: 70px;
+}
+.jj
+{
+  padding: 0px 0px 0px 0px;
+}
+.books_images{
+  width:130px;
+  height:200px;
+  margin-left: 5%;
+}
+button
+{
+  background-color: white;
+}
+.text{
+  display: inline-grid;
+  position: absolute;
+  padding-top:0px;
+  padding-left:30px;
+  width: 30%;
+  font-family: 'Raleway', sans-serif;
+  margin-top:5px;
+  margin-right: 5%;
+}
+.details
+{
+  display:inline-block;
+  width:38%;
+  margin-right: 7%;
+  margin-left: 4%;
+}
+.space
+{
+  margin-top: 34%;
+}
+
+

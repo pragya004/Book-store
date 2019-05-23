@@ -3,10 +3,13 @@
 <html>
     <head>
         <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'chat/searchchat.css' %}">
         <link rel="stylesheet" href="{% static 'chat/chat_index_group.css' %}">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.js"></script>
         <script src="{% static 'chat/js/chat_index_group.js' %}"></script>
-        <title>B-Store</title>
+        <title>book-club</title>
     </head>
 
 <body>
@@ -14,31 +17,48 @@
     <div id="section-1">
         <div id="profile-details">
             <div id="profilepic">
+                 <img style="margin-top: 60px;margin-left: 70px;width: 70px;height: 70px; border-radius: 50px 50px 50px 50px;" src="{{ user_details.profile.image.url }}">
+                 <p id="pname">{{ user_details.username }}</p>
             </div>
-            <p id="email">{{ user_details.email }}</p>
-            <p id="pname">{{ user_details.username }}</p>
+            
         </div>
 
         <div id="groups-div">
-            <h1>Groups</h1>
+            <h3 style="margin-top: 6.5em;margin-left: 8em;font-family: 'Open Sans', sans-serif;font-size:20pxpx;letter-spacing: 2px;color: grey;">Groups</h3>
+            
+            <div id="groups-list" ng-controller="setup">
+            </div>
             <div id="create-group">
                 <a href="{% url 'chat_create_group' %}">Create Group</a>
             </div>
-            <div id="groups-list" ng-controller="setup">
-            </div>
         </div>
     </div>
+    <div class="menu1"> 
+
+      {% if user.is_authenticated %}
+        <a href='#'>contact us</a>
+        <a href="{% url 'logout' %}">Logout</a>
+        <a href="{% url 'profile' %}">profile</a>
+        <a href="{% url 'chat_index_direct_url' %}">Chat with a seller/buyer</a>
+        <a href="{% url 'sellbookpage' %}">sell/buy/exchange books</a>
+        <a href="{% url 'bstore_home' %}">home</a>
+        <div class="new">
+            <a id="selected_group"></a>
+               <div> <p>Group Description - </p><a id="group_description"></a></div>
+        </div>
+      {% else %}  
+        <div class="logo">B-Store</div>
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'bstore_register' %}">Register</a>
+      {% endif %}
+    
+    </div>
+
+
+
+
 
     <div id="section-2">
-        <div id="nav-bar">
-            <span id="brand">B-Store</span>
-            <a id="top" href="{% url 'logout' %}">Logout</a>
-            <a id="top" href="{% url 'bstore_home' %}">Home</a>
-            <a id="top" href="{% url 'chat_index_direct_url' %}">Direct Chats</a>
-            <a id="selected_group"></a>
-            <br>
-            Group Description: <a id="group_description"></a>
-        </div>
 
         <div ng-controller="user" style="border:0px;margin:0px;padding:0px;">
 
