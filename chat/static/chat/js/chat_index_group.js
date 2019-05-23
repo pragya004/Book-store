@@ -2,7 +2,7 @@ var app = angular.module("myApp", []);
 app.controller("setup",function($rootScope,$http,$compile){
 
 
-    var api_url = "http://127.0.0.1:8000/chat/api/fetch/groups/";
+    var api_url = "/chat/api/fetch/groups/";
   
     $http.get(url=api_url).then(function(response){
 
@@ -37,7 +37,7 @@ app.controller("user", function($scope,$rootScope,$http,$interval) {
 
     function fetchMessages(id)
     {    
-        $http.get(url="http://127.0.0.1:8000/chat/api/messages?conv_id=" + $scope.conv_id + "&type=2")
+        $http.get(url="/chat/api/messages?conv_id=" + $scope.conv_id + "&type=2")
         .then(function(response){
 
             if(len != response.data["messages"].length)
@@ -90,7 +90,7 @@ app.controller("user", function($scope,$rootScope,$http,$interval) {
 
             document.getElementById("name").value = "";
 
-            $http.post(url="http://127.0.0.1:8000/chat/api/messages/",data=message);
+            $http.post(url="/chat/api/messages/",data=message);
         }
     }
 
@@ -115,7 +115,7 @@ app.controller("user", function($scope,$rootScope,$http,$interval) {
         
         len = 0;
 
-        $http.get("http://127.0.0.1:8000/chat/api/group/adduser?id=" + id).then(function(response){
+        $http.get("/chat/api/group/adduser?id=" + id).then(function(response){
 
             $scope.conv_id = id;
 
@@ -129,11 +129,3 @@ app.controller("user", function($scope,$rootScope,$http,$interval) {
 
 
 });
-
-
-
-  
-
-// app.controller("login", function($scope){
-
-// });

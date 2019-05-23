@@ -2,7 +2,7 @@ var app = angular.module("myApp", []);
 // communicates with get_users view to show all the users 
 app.controller("setup",function($rootScope,$http,$compile){
 
-    var api_url = "http://127.0.0.1:8000/chat/api/fetch/users/";
+    var api_url = "/chat/api/fetch/users/";
   
     $http.get(url=api_url).then(function(response){
 
@@ -41,7 +41,7 @@ app.controller("user", function($scope,$rootScope,$http,$interval) {
 
   function fetchMessages(id)
   {    
-    $http.get(url="http://127.0.0.1:8000/chat/api/messages?conv_id=" + $scope.conv_id + "&type=1").then(function(response){
+    $http.get(url="/chat/api/messages?conv_id=" + $scope.conv_id + "&type=1").then(function(response){
 
        if(len != response.data["messages"].length)
        { 
@@ -95,7 +95,7 @@ app.controller("user", function($scope,$rootScope,$http,$interval) {
       document.getElementById("name").value = "";
       // console.log(message);
 
-      $http.post(url="http://127.0.0.1:8000/chat/api/messages/",data=message);
+      $http.post(url="/chat/api/messages/",data=message);
   
     }
 
@@ -126,7 +126,7 @@ app.controller("user", function($scope,$rootScope,$http,$interval) {
 
         len = 0;
 
-        $http.get("http://127.0.0.1:8000/chat/api/direct/conversation?id=" + id).then(function(response){
+        $http.get("/chat/api/direct/conversation?id=" + id).then(function(response){
 
         console.log(response.data["conv_id"]);
 
