@@ -1,0 +1,5 @@
+bstore/__pycache__/
+chat/__pycache__/
+chat/migrations/__pycache__/
+project_bstore/__pycache__/
+project_bstore/migrations/__pycache__/

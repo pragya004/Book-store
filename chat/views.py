@@ -20,7 +20,7 @@ def chat_index_group(request):
         return redirect('login')
     
     context = {"user_details": request.user}
-    
+
     return render(request,"chat/chat_index_group.html", context)
 
 
@@ -131,6 +131,7 @@ def messages(request):
             direct_chat = DirectChat.objects.get(pk=int(data["conversation"]))
             message     = DirectMessage(sender=sender, direct_chat=direct_chat, message=data["body"])
             message.save()
+
         else:
 
             group_chat  = Group.objects.get(pk=int(data["conversation"]))
